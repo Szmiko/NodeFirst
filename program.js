@@ -8,8 +8,15 @@ process.stdin.on('readable', function() {
 			process.stdout.write('Quitting app!\n');
 			process.exit();
 		} else {
-			process.stderr.write('Wrong instruction!');
-					
+			process.stderr.write('Wrong instruction!');		
 		};
+	};
+	var info = input.toString().trim();
+	switch (info) {
+		case 'Info':
+			console.log(process.env);
+			break;
+		default:
+			console.log("Wrong instruction. We can't show you " + info + " about Node.js");
 	};
 });
