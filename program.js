@@ -2,21 +2,19 @@ process.stdin.setEncoding('utf-8');
 
 process.stdin.on('readable', function() {
 	var input = process.stdin.read();
-	if (input !== null) {
-		var instruction = input.toString().trim();
-		if (instruction === '/exit') {
-			process.stdout.write('Quitting app!\n');
-			process.exit();
-		} else {
-			process.stderr.write('Wrong instruction!');		
-		};
+	if (!input) {
+		return;
 	};
-	var info = input.toString().trim();
-	switch (info) {
+	
+	var instruction = input.toString().trim();
+	switch (instruction) {
 		case 'Info':
 			console.log(process.env);
 			break;
+		case '/exit':
+			process.stdout.write('Quitting app!\n');
+			process.exit();
 		default:
-			console.log("Wrong instruction. We can't show you " + info + " about Node.js");
+		console.log("Wrong instruction. We can't show you " + instruction + " about Node.js");
 	};
 });
